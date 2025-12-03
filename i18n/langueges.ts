@@ -4,11 +4,11 @@ type Language = {
 }
 
 export const languages: Record<string, Language> = {
-  'en-US': {
+  en: {
     displayName: 'English',
     shortName: 'EN',
   },
-  'zh-TW': {
+  'zh-tw': {
     displayName: '繁體中文（台灣）',
     shortName: 'TW',
   },
