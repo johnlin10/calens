@@ -1,6 +1,5 @@
 'use server'
 
-import { auth } from '@clerk/nextjs/server'
 import { parseEventWithGemini, EventDetails } from '../lib/gemini'
 
 export interface GenerateEventResult {
@@ -13,14 +12,7 @@ export async function generateEvent(
   prevState: GenerateEventResult,
   formData: FormData
 ): Promise<GenerateEventResult> {
-  // MVP: Allow public access, but log user ID if available.
-  try {
-    const { userId } = await auth()
-    console.log('User ID calling generateEvent:', userId)
-  } catch (e) {
-    // Ignore auth errors in MVP/demo mode if Clerk is not fully configured
-    console.warn('Auth check failed, proceeding as guest:', e)
-  }
+  // TODO: Add authenticated logging after Clerk adds proxy-aware middleware detection.
 
   const text = formData.get('text') as string
   const image = formData.get('image') as string // Base64 string
