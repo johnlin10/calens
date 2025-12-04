@@ -1,0 +1,51 @@
+@use '@/app/styles/mixins' as mixins;
+
+.language_switch {
+  position: relative;
+  z-index: 10;
+  height: 36px;
+  width: fit-content;
+
+  .language_switch_item {
+    position: relative;
+    height: 100%;
+    padding: 0 12px;
+    @include mixins.flexbox(row, center, center);
+    background: #fff;
+    border: 2px solid #000;
+    @include mixins.radius(var(--radius-2x));
+    @include mixins.transition(var(--transition-fast));
+    cursor: pointer;
+
+    &:hover {
+      background: #ffd83d;
+      transform: translate(-2px, -2px);
+      box-shadow: 2px 2px 0px #000;
+    }
+
+    .language_display {
+      @include mixins.flexbox(row, center, center);
+      width: 100%;
+      height: 100%;
+
+      .language_current {
+        margin: 0;
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: #000;
+        text-align: center;
+      }
+    }
+
+    .language_select {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+      appearance: none;
+    }
+  }
+}

@@ -2,5 +2,53 @@
   "site_config": {
     "name": "Calens",
     "description": "See it. Schedule it."
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About"
+  },
+  "home": {
+    "heroSection": {
+      "badge": "OPEN SOURCE BETA",
+      "title1": "See it.",
+      "title2": "Schedule it.",
+      "description": "Say goodbye to manual input. AI-powered, transform posters and event flyers into your calendar in seconds.",
+      "description2": "Supports .ics download and direct Google Calendar integration.",
+      "buttons": {
+        "start": "Get Started",
+        "learnMore": "Learn More"
+      },
+      "eventGenerator": {
+        "form": {
+          "modeSelector": {
+            "textMode": "<> Text Input",
+            "imageMode": "Upload Image"
+          },
+          "textareaPlaceholder": "Paste event details here... e.g. Dinner party at the community center tomorrow at 7pm...",
+          "imageUpload": {
+            "upload": "Upload Event Poster/Screenshot",
+            "replace": "Replace Image"
+          },
+          "submit": {
+            "button": "⚡ Generate Calendar",
+            "buttonLoading": "AI Analyzing..."
+          }
+        },
+        "preview": {
+          "title": "Event Analysis Complete!",
+          "description": "Event Analysis Complete!",
+          "event": {
+            "title": "Event Name",
+            "time": "Time",
+            "location": "Location",
+            "description": "Notes"
+          },
+          "actions": {
+            "googleCalendar": "Add to Google Calendar",
+            "ics": "Download .ics File"
+          }
+        }
+      }
+    }
   }
 }

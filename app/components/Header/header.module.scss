@@ -1,0 +1,77 @@
+@use '@/app/styles/mixins' as mixins;
+
+.header {
+  @include mixins.flexbox(row, space-between, center);
+  @include mixins.floating(1000, fixed, 0, 0, auto, auto);
+  width: 100%;
+  height: 72px;
+  padding: 18px 18px 18px 24px;
+  border-bottom: 2px solid var(--border);
+  background: var(--background);
+
+  > .header_container {
+    @include mixins.flexbox(row, space-between, center);
+    gap: 24px;
+    width: 100%;
+    height: 100%;
+
+    > div {
+      min-width: 36px;
+      min-height: 36px;
+      max-height: 36px;
+    }
+
+    > .header_logo {
+      @include mixins.flexbox(row, center, center);
+      width: fit-content;
+      min-width: fit-content;
+
+      a {
+        @include mixins.flexbox(row, center, center);
+        gap: 12px;
+        width: 100%;
+        height: 100%;
+        font-family: var(--font-geist-mono);
+        font-weight: 900;
+        font-size: 1.5rem;
+      }
+    }
+    > .header_navigation {
+      width: 100%;
+      height: 100%;
+
+      > ul {
+        @include mixins.flexbox(row, flex-end, center);
+        gap: 18px;
+        width: 100%;
+        height: 100%;
+
+        > li {
+          a {
+            @include mixins.flexbox(row, center, center);
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+
+            &:hover {
+              border-bottom: 2px solid var(--border);
+            }
+          }
+        }
+      }
+    }
+    > .header_actions {
+      @include mixins.flexbox(row, center, center);
+      gap: var(--spacing-2x);
+
+      > .header_actions_user {
+        @include mixins.flexbox(row, center, center);
+
+        > .cl-userButton-root {
+          width: 36px;
+          height: 36px;
+        }
+      }
+    }
+  }
+}

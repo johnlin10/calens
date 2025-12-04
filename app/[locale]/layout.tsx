@@ -1,21 +1,33 @@
-import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import type { Metadata, Viewport } from 'next'
+import { ClerkProvider } from '@clerk/nextjs'
+import { Geist, Geist_Mono, Noto_Sans_TC } from 'next/font/google'
 import { getLocale } from 'next-intl/server'
 import './globals.css'
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-})
+import '@/app/styles/colors.scss'
+import Header from '@/app/components/Header/Header'
+import { NextIntlClientProvider } from 'next-intl'
 
 const geistMono = Geist_Mono({
   variable: '--font-geist-mono',
   subsets: ['latin'],
 })
 
+const notoSansTC = Noto_Sans_TC({
+  variable: '--font-noto-sans-tc',
+  subsets: ['latin'],
+})
+
 export const metadata: Metadata = {
   title: 'Calens',
   description: 'See it. Schedule it.',
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  viewportFit: 'cover',
+  userScalable: false,
 }
 
 export default async function RootLayout({
@@ -26,12 +38,17 @@ export default async function RootLayout({
   const locale = await getLocale()
 
   return (
-    <html lang={locale as string}>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <NextIntlClientProvider locale={locale}>
+      <ClerkProvider>
+        <html lang={locale as string}>
+          <body
+            className={`${notoSansTC.variable} ${geistMono.variable} antialiased`}
+          >
+            <Header />
+            {children}
+          </body>
+        </html>
+      </ClerkProvider>
+    </NextIntlClientProvider>
   )
 }

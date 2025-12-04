@@ -1,0 +1,109 @@
+@mixin flexbox($direction: row, $justify: flex-start, $align: flex-start) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin floating(
+  $z-index: 1000,
+  $position: absolute,
+  $top: 0,
+  $left: 0,
+  $right: auto,
+  $bottom: auto
+) {
+  position: $position;
+  top: $top;
+  left: $left;
+  right: $right;
+  bottom: $bottom;
+}
+
+@mixin respond-to(
+  $breakpoint,
+  $mobile-breakpoint: 600px,
+  $tablet-breakpoint: 1024px
+) {
+  @if $breakpoint == 'mobile' {
+    @media (max-width: $mobile-breakpoint) and (min-height: 300px) {
+      @content;
+    }
+  } @else if $breakpoint == 'mobile-landscape' {
+    @media (min-width: $mobile-breakpoint) and (max-height: $mobile-breakpoint) and (orientation: landscape) {
+      @content;
+    }
+  } @else if $breakpoint == 'tablet' {
+    @media ((min-width: $mobile-breakpoint) and (max-width: $tablet-breakpoint)) {
+      @content;
+    }
+  } @else if $breakpoint == 'desktop' {
+    @media (min-width: $tablet-breakpoint) {
+      @content;
+    }
+  }
+}
+@mixin respond-by-max-width($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+@mixin respond-by-min-width($width) {
+  @media (min-width: $width) {
+    @content;
+  }
+}
+
+@mixin radius($radius: 12px) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+}
+
+@mixin button($mode: 'primary') {
+  @include flexbox(row, center, center);
+  padding: 6px 12px;
+  background: var(--background);
+  color: var(--foreground);
+  border: 2px solid var(--border);
+  font-size: 1rem;
+  font-weight: 500;
+  @include radius(12px);
+  cursor: pointer;
+  @include transition(var(--transition-fast));
+
+  @if $mode != 'plain' {
+    @include shadow(3px);
+
+    &:hover {
+      @include shadow(4px);
+    }
+
+    &:active {
+      @include shadow(0);
+    }
+  }
+}
+
+@mixin transition($transition: var(--transition-default)) {
+  transition: $transition;
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -ms-transition: $transition;
+  -o-transition: $transition;
+}
+
+@mixin transform($transform: none) {
+  transform: $transform;
+  -webkit-transform: $transform;
+  -moz-transform: $transform;
+  -ms-transform: $transform;
+  -o-transform: $transform;
+}
+
+@mixin shadow($offset: 3px, $color: var(--foreground)) {
+  box-shadow: $offset $offset 0 0 $color;
+  @include transform(translate(-$offset/2, -$offset/2));
+}

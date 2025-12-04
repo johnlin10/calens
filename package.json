@@ -9,6 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.35.6",
+    "@google/genai": "^1.31.0",
+    "@google/generative-ai": "^0.24.1",
+    "@supabase/supabase-js": "^2.86.0",
+    "date-fns": "^4.1.0",
+    "ics": "^3.8.1",
     "next": "16.0.6",
     "next-intl": "^4.5.7",
     "react": "19.2.0",

@@ -1,0 +1,17 @@
+:root {
+  --background: #fffdf5;
+  --foreground: #1c1c1a;
+  --border: #1c1c1a;
+}
+
+:root.light {
+  --background: #fffdf5;
+  --foreground: #1c1c1a;
+  --border: #1c1c1a;
+}
+
+:root.dark {
+  --background: #1c1c1a;
+  --foreground: #fffdf5;
+  --border: #fffdf5;
+}

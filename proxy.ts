@@ -1,13 +1,18 @@
-import { type NextRequest } from 'next/server'
+import { clerkMiddleware } from '@clerk/nextjs/server'
 import createMiddleware from 'next-intl/middleware'
 import { routing } from './i18n/routing'
 
 const intlMiddleware = createMiddleware(routing)
 
-export function proxy(request: NextRequest) {
-  return intlMiddleware(request)
-}
+export default clerkMiddleware(async (_auth, req) => {
+  return intlMiddleware(req)
+})
 
 export const config = {
-  matcher: '/((?!api|trpc|_next|_vercel|.*\\..*).*)',
+  matcher: [
+    // Skip Next.js internals and all static files, unless found in search params
+    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
+    // Always run for API routes
+    '/(api|trpc)(.*)',
+  ],
 }

@@ -1,18 +1,85 @@
 @import 'tailwindcss';
 
+:root {
+  --transition-bezier: cubic-bezier(0.23, 0.1, 0.32, 1);
+  --transition-default: all 0.3s var(--transition-bezier);
+  --transition-fast: all 0.15s var(--transition-bezier);
+
+  --spacing-half: 3px;
+  --spacing: 6px;
+  --spacing-2x: 12px;
+  --spacing-3x: 18px;
+  --spacing-4x: 24px;
+  --spacing-5x: 30px;
+  --spacing-6x: 36px;
+  --spacing-7x: 42px;
+  --spacing-8x: 48px;
+  --spacing-9x: 54px;
+  --spacing-10x: 60px;
+
+  --radius-half: 3px;
+  --radius: 6px;
+  --radius-2x: 12px;
+  --radius-3x: 18px;
+  --radius-4x: 24px;
+  --radius-5x: 30px;
+  --radius-6x: 36px;
+  --radius-7x: 42px;
+  --radius-8x: 48px;
+  --radius-9x: 54px;
+  --radius-10x: 60px;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root {
-  --background: #131313;
-  --foreground: #ededed;
+html {
+  width: 100%;
+  height: 100%;
 }
-
 body {
+  width: 100%;
+  height: 100%;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Helvetica, sans-serif;
+  font-family: var(--font-noto-sans-tc), Helvetica, sans-serif;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  margin: 1em 0 0.5em 0;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin: 1em 0 0.5em 0;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 900;
+  margin: 1em 0 0.5em 0;
+}
+
+h4 {
+  font-size: 1rem;
+  font-weight: 900;
+  margin: 1em 0 0.5em 0;
+}
+
+h5 {
+  font-size: 0.875rem;
+  font-weight: 900;
+  margin: 1em 0 0.5em 0;
+}
+
+p {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0.5em 0 0.5em 0;
 }
