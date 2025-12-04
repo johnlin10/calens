@@ -10,7 +10,7 @@ export const languages: Record<string, Language> = {
   },
   'zh-tw': {
     displayName: '繁體中文（台灣）',
-    shortName: '繁中',
+    shortName: 'TW',
   },
 }
 

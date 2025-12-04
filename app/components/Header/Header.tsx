@@ -1,12 +1,12 @@
 import Link from 'next/link'
 import styles from './header.module.scss'
-import {
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from '@clerk/nextjs'
+// import {
+//   SignInButton,
+//   SignUpButton,
+//   SignedIn,
+//   SignedOut,
+//   UserButton,
+// } from '@clerk/nextjs'
 // import Image from 'next/image'
 // import { useTranslations } from 'next-intl'
 import LanguageSwitch from '../LanguageSwitch/LanguageSwitch'
@@ -35,7 +35,7 @@ export default function Header() {
         </div> */}
         <div className={styles.header_actions}>
           <LanguageSwitch />
-          <div className={styles.header_actions_user}>
+          {/* <div className={styles.header_actions_user}>
             <SignedIn>
               <UserButton />
             </SignedIn>
@@ -43,7 +43,7 @@ export default function Header() {
               <SignInButton />
               <SignUpButton />
             </SignedOut>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

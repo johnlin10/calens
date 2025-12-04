@@ -1,14 +1,12 @@
 import { getRequestConfig } from 'next-intl/server'
+import { hasLocale } from 'next-intl'
 import { routing } from './routing'
 
 export default getRequestConfig(async ({ requestLocale }) => {
-  //* 取得 locale，如果不存在則使用預設值
-  let locale = await requestLocale
-
-  //* 確保 locale 有效
-  if (!locale || !routing.locales.includes(locale as 'en' | 'zh-tw')) {
-    locale = routing.defaultLocale
-  }
+  const requested = await requestLocale
+  const locale = hasLocale(routing.locales, requested)
+    ? requested
+    : routing.defaultLocale
 
   return {
     locale,
