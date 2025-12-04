@@ -105,5 +105,5 @@
 
 @mixin shadow($offset: 3px, $color: var(--foreground)) {
   box-shadow: $offset $offset 0 0 $color;
-  @include transform(translate(-$offset/2, -$offset/2));
+  @include transform(translate(calc(-1 * $offset/2), calc(-1 * $offset/2)));
 }
