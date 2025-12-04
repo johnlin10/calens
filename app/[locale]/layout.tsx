@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { ClerkProvider } from '@clerk/nextjs'
 import { Geist, Geist_Mono, Noto_Sans_TC } from 'next/font/google'
-import { getLocale } from 'next-intl/server'
+import { getLocale, getMessages } from 'next-intl/server'
 import './globals.css'
 import '@/app/styles/colors.scss'
 import Header from '@/app/components/Header/Header'
@@ -36,9 +36,10 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const locale = await getLocale()
+  const messages = await getMessages()
 
   return (
-    <NextIntlClientProvider locale={locale}>
+    <NextIntlClientProvider locale={locale} messages={messages}>
       <ClerkProvider>
         <html lang={locale as string}>
           <body
