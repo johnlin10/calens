@@ -32,11 +32,13 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode
+  params: Promise<{ locale: string }>
 }>) {
-  const locale = await getLocale()
-  const messages = await getMessages()
+  const { locale } = await params
+  const messages = await getMessages({ locale })
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>

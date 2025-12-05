@@ -3,8 +3,13 @@ import styles from './home.module.scss'
 import PageContainer from '../components/PageContainer/PageContainer'
 import EventGenerator from '../components/EventGenerator'
 
-export default async function Home() {
-  const t = await getTranslations('home')
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'home' })
 
   return (
     <PageContainer className={styles.homePage} fullWidth>
