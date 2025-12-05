@@ -30,14 +30,35 @@ export default function EventGenerator() {
     setShowPreview(false)
   }
 
-  // const testEvent = {
-  //   title: '聖誕節交換禮物',
-  //   start: '2025-12-24T12:10:00',
-  //   end: '2025-12-24T15:30:00',
-  //   location: '2324',
-  //   description:
-  //     '系學會誠摯邀請大家與一年級學弟妹們一起舉行聖誕節交換禮物。活動當天將準備午餐供大家享用。有興趣的同學請填寫表單。',
-  // }
+  // const testEvents = [
+  //   {
+  //     title: '聖誕節交換禮物',
+  //     start: '2025-12-24T12:10:00',
+  //     end: '2025-12-24T15:30:00',
+  //     location: '2324',
+  //     isAllDay: false,
+  //     description:
+  //       '系學會誠摯邀請大家與一年級學弟妹們一起舉行聖誕節交換禮物。活動當天將準備午餐供大家享用。有興趣的同學請填寫表單。',
+  //   },
+  //   {
+  //     title: '聖誕節交換禮物',
+  //     start: '2025-12-24T12:10:00',
+  //     end: '2025-12-24T15:30:00',
+  //     location: '2324',
+  //     isAllDay: false,
+  //     description:
+  //       '系學會誠摯邀請大家與一年級學弟妹們一起舉行聖誕節交換禮物。活動當天將準備午餐供大家享用。有興趣的同學請填寫表單。',
+  //   },
+  //   {
+  //     title: '聖誕節交換禮物',
+  //     start: '2025-12-24T12:10:00',
+  //     end: '2025-12-24T15:30:00',
+  //     location: '2324',
+  //     isAllDay: false,
+  //     description:
+  //       '系學會誠摯邀請大家與一年級學弟妹們一起舉行聖誕節交換禮物。活動當天將準備午餐供大家享用。有興趣的同學請填寫表單。',
+  //   },
+  // ]
 
   return (
     <div className={styles.container}>
@@ -60,10 +81,10 @@ export default function EventGenerator() {
       )}
 
       {showPreview && state.data && (
-        <EventPreview event={state.data} onClose={handleClosePreview} />
+        <EventPreview events={state.data} onClose={handleClosePreview} />
       )}
 
-      {/* <EventPreview event={testEvent} onClose={handleClosePreview} /> */}
+      {/* <EventPreview events={testEvents} onClose={handleClosePreview} /> */}
     </div>
   )
 }

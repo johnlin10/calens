@@ -173,190 +173,339 @@
   }
 }
 
+// --- Event Preview Overlay Styles ---
+
 .resultCardOverlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3); // Semi-transparent background
-  backdrop-filter: blur(4px);
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(24px);
   z-index: 9999;
   @include mixins.flexbox(column, center, center);
-  padding: 20px;
+
+  .carouselContainer {
+    width: fit-content;
+    max-width: 100%;
+    padding: var(--spacing-4x) 0;
+    @include mixins.flexbox(column, flex-start, stretch);
+    animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .carouselHeader {
+    width: 100%;
+    margin-bottom: 16px;
+    position: relative;
+    height: 40px;
+    padding: 0 var(--spacing-4x);
+    @include mixins.flexbox(row, space-between, center);
+
+    .multiEventBadge {
+      height: 40px;
+      background: #000;
+      color: #fff;
+      border: 2px solid #000;
+      padding: 6px 16px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      @include mixins.radius(20px);
+    }
+
+    .closeButtonOverlay {
+      @include mixins.flexbox(row, center, center);
+      background: #fff;
+      border: 2px solid #000;
+      color: #000;
+      width: 40px;
+      height: 40px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-left: auto; // Ensures right alignment
+      @include mixins.transition;
+      @include mixins.radius(24px);
+
+      &:hover {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  .cardDisplayArea {
+    width: 100%;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: visible; // Ensure vertical overflow (shadows) is visible
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-bottom: 40px; // Reserve space for shadow
+    margin-bottom: -16px; // Compensate for padding so layout doesn't shift too much
+
+    // Hide scrollbar
+    scrollbar-width: none; // Firefox
+    &::-webkit-scrollbar {
+      display: none; // Chrome/Safari/Edge
+    }
+  }
+
+  .cardWrapper {
+    width: 100%;
+    min-width: 540px;
+    max-width: 540px;
+    scroll-snap-align: center;
+    padding: 0 var(--spacing-4x);
+
+    &:first-child {
+      padding-left: var(--spacing-8x);
+    }
+    &:last-child {
+      padding-right: var(--spacing-8x);
+    }
+
+    @include mixins.respond-to('mobile') {
+      min-width: calc(100% - var(--spacing-4x));
+      max-width: 100%;
+      padding: 0 var(--spacing);
+      &:not(:first-child):not(:last-child) {
+        min-width: calc(100% - var(--spacing-8x));
+      }
+      &:first-child {
+        padding-left: var(--spacing-4x);
+      }
+      &:last-child {
+        padding-right: var(--spacing-4x);
+      }
+    }
+  }
 
   .resultCard {
     width: 100%;
-    max-width: 540px; // Slightly narrower for ticket feel
-    background: #fff;
+    background: linear-gradient(
+      180deg,
+      var(--primary-lite) 0%,
+      var(--background) 100%
+    );
     border: 3px solid #000;
-    border-radius: 16px;
-    box-shadow: 8px 8px 0px #000;
+    border-radius: 24px;
     overflow: hidden;
-    animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-
-    .cardHeader {
-      background: #5865f2;
-      padding: 16px 24px;
-      border-bottom: 3px solid #000;
-      @include mixins.flexbox(row, space-between, center);
-
-      .successBadge {
-        color: #fff;
-        font-weight: 900;
-        font-size: 1.25rem;
-        @include mixins.flexbox(row, center, center);
-        gap: 8px;
-
-        .icon {
-          color: #ffd83d; // Yellow icon
-        }
-      }
-
-      .closeButton {
-        background: transparent;
-        border: none;
-        color: #fff;
-        font-size: 1.5rem;
-        cursor: pointer;
-        padding: 4px;
-        line-height: 1;
-
-        &:hover {
-          opacity: 0.8;
-        }
-      }
-    }
+    position: relative;
 
     .cardContent {
-      padding: 24px 32px;
-      background: #fff;
+      width: 100%;
+      @include mixins.flexbox(column, flex-start, stretch);
+    }
 
-      .label {
-        font-size: 0.75rem;
-        font-weight: 800;
-        color: #9ca3af;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        margin-bottom: 8px;
-        display: block;
+    .topSection {
+      padding: 32px 32px 24px 32px;
+
+      @include mixins.respond-to('mobile') {
+        padding: var(--spacing-4x);
       }
 
-      .mainInfo {
-        margin-bottom: 24px;
+      .headerRow {
+        .label {
+          font-size: 0.8rem;
+          font-weight: 800;
+          color: var(--foreground-400);
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+        }
+      }
 
-        .eventTitle {
-          font-size: 1.75rem;
-          font-weight: 900;
-          line-height: 1.3;
-          margin: 0;
+      .eventTitle {
+        font-size: 2rem;
+        font-weight: 900;
+        line-height: 1.2;
+        margin: var(--spacing-2x) 0;
+        color: var(--foreground-950);
+        word-break: break-word;
+
+        @include mixins.respond-by-max-width(480px) {
+          font-size: 1.5rem;
         }
       }
 
       .dateTimeGroup {
         display: grid;
-        grid-template-columns: 1fr 1.2fr; // Give time a bit more space
-        gap: 16px;
-        margin-bottom: 24px;
-
-        @include mixins.respond-to('mobile') {
-          grid-template-columns: 1fr;
-        }
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-2x);
+        margin-bottom: var(--spacing-3x);
 
         .dateTimeBlock {
-          background: #f9fafb;
-          border: 2px solid #e5e7eb;
-          border-radius: 8px;
-          padding: 12px 16px;
+          background: #fff;
+          border: 2px solid var(--border);
+          border-radius: 12px;
+          padding: calc(var(--spacing-2x) - 2px) calc(var(--spacing-2x) - 2px);
+          @include mixins.flexbox(column, flex-start, flex-start);
+          gap: 4px;
+
+          .iconLabel {
+            @include mixins.flexbox(row, flex-start, center);
+            gap: 6px;
+            color: var(--foreground-400);
+
+            .icon {
+              font-size: 1rem;
+            }
+
+            .label {
+              font-size: 0.7rem;
+              font-weight: 700;
+              text-transform: uppercase;
+              letter-spacing: 0.05em;
+            }
+          }
 
           .value {
-            font-weight: 700;
-            font-size: 1.1rem;
-            font-family: monospace; // Monospace for time alignment
-            letter-spacing: -0.02em;
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--foreground-950);
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
           }
         }
       }
 
       .locationBlock {
-        margin-bottom: 24px;
+        .iconLabel {
+          @include mixins.flexbox(row, flex-start, center);
+          gap: 6px;
+          color: var(--foreground-400);
+          margin-bottom: var(--spacing);
 
-        .value {
-          font-weight: 600;
-          font-size: 1.1rem;
-        }
-      }
-
-      .divider {
-        position: relative;
-        height: 24px;
-        margin: 0 -32px 24px -32px; // Negative margin to stretch full width
-        @include mixins.flexbox(row, center, center);
-        overflow: hidden; // Hide dashed line overflow if any
-
-        .dashedLine {
-          width: 100%;
-          height: 0;
-          border-top: 2px dashed #e5e7eb;
-        }
-
-        .cutoutLeft,
-        .cutoutRight {
-          position: absolute;
-          top: 50%;
-          width: 24px;
-          height: 24px;
-          background: #000; // Border color
-          border-radius: 50%;
-          transform: translateY(-50%);
-          z-index: 1;
-
-          &::after {
-            content: '';
-            position: absolute;
-            top: 3px;
-            left: 3px;
-            right: 3px;
-            bottom: 3px;
-            background: #000; // Simulated overlay color (greyish)
-            border-radius: 50%;
+          .icon {
+            font-size: 1rem;
+          }
+          .label {
+            display: block;
+            gap: 3px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--foreground-400);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
           }
         }
 
-        .cutoutLeft {
-          left: -12px;
-        }
+        .locationContent {
+          @include mixins.flexbox(row, flex-start, center);
+          gap: var(--spacing-2x);
+          margin-left: var(--spacing-half);
 
-        .cutoutRight {
-          right: -12px;
+          .bar {
+            width: 4px;
+            height: 24px;
+            background: var(--border);
+            flex-shrink: 0;
+            @include mixins.radius(2px);
+          }
+
+          .value {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--foreground-950);
+            line-height: 1.4;
+          }
         }
       }
 
-      .actions {
-        @include mixins.flexbox(row, center, center);
-        gap: 16px;
+      .descriptionBlock {
+        margin-top: var(--spacing-3x);
 
-        @include mixins.respond-by-max-width(580px) {
-          @include mixins.flexbox(column, center, center);
-          gap: 8px;
+        .iconLabel {
+          @include mixins.flexbox(row, flex-start, center);
+          gap: 6px;
+          color: var(--foreground-400);
+          margin-bottom: 4px;
+
+          .icon {
+            font-size: 1rem;
+          }
+
+          .label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+          }
         }
+
+        .value {
+          font-size: 0.9rem;
+          color: var(--foreground-600);
+          line-height: 1.4;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          padding-left: 2px;
+        }
+      }
+    }
+
+    .divider {
+      position: relative;
+      width: 100%;
+      height: 2px;
+      margin: 0;
+      @include mixins.flexbox(row, center, center);
+
+      .dashedLine {
+        width: 100%;
+        height: 0;
+        border-top: 2px dashed var(--foreground-300);
+        margin: 0 24px;
+      }
+    }
+
+    .bottomSection {
+      padding: 24px 32px 32px 32px;
+      background: transparent;
+
+      @include mixins.respond-to('mobile') {
+        padding: var(--spacing-4x);
+      }
+
+      .actions {
+        @include mixins.flexbox(column, stretch, center);
+        gap: 12px;
 
         button,
         a {
-          flex: 1;
           @include mixins.flexbox(row, center, center);
           gap: 8px;
-          padding: 12px;
-          border-radius: 8px;
-          font-weight: 700;
+          width: 100%;
+          padding: 14px;
           font-size: 1rem;
+          font-weight: 700;
+          border: 2px solid #000;
           text-decoration: none;
           cursor: pointer;
-          transition: all 0.2s;
-          border: 2px solid #000;
+          @include mixins.transition;
+          @include mixins.radius(9px);
 
-          @include mixins.respond-by-max-width(580px) {
-            width: 100%;
+          &:hover {
+            @include mixins.transform(translate(-3px, -3px));
+          }
+          &:active {
+            transform: scale(0.98);
+          }
+          @include mixins.respond-to('mobile') {
+            font-size: 1rem;
+            padding: var(--spacing-2x);
+          }
+        }
+
+        .icsBtn {
+          background: #000;
+          color: #fff;
+          box-shadow: 0 0 0 #3a3a3a;
+
+          &:hover {
+            box-shadow: 3px 3px 0 #3a3a3a;
           }
 
           .icon {
@@ -364,37 +513,68 @@
           }
         }
 
-        .icsBtn {
-          background: #000;
-          color: #fff;
-          box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.2);
-
-          &:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.2);
-          }
-
-          &:active {
-            transform: translate(0, 0);
-            box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
-          }
-        }
-
         .googleBtn {
           background: #fff;
           color: #000;
-          box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 0 #000;
 
           &:hover {
-            background: #f3f4f6;
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.1);
+            box-shadow: 3px 3px 0 #000;
           }
 
-          &:active {
-            transform: translate(0, 0);
-            box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+          .icon {
+            font-size: 1.2rem;
+            font-weight: bold;
           }
+        }
+      }
+    }
+  }
+
+  .navigationControls {
+    margin: 0 auto;
+    width: fit-content;
+    @include mixins.flexbox(row, center, center);
+    display: none;
+    gap: 24px;
+    border: 3px solid #000;
+    background: #fff;
+    @include mixins.radius(24px);
+
+    @include mixins.respond-to('mobile') {
+      display: flex;
+    }
+
+    .navBtn {
+      background: transparent;
+      border: none;
+      color: #000;
+      padding: 8px;
+      cursor: pointer;
+      transition: color 0.2s;
+
+      &:disabled {
+        color: #d1d1d1;
+        cursor: not-allowed;
+      }
+    }
+
+    .dots {
+      @include mixins.flexbox(row, center, center);
+      gap: 8px;
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        background: #a1a1a1;
+        transition: background 0.2s;
+        @include mixins.radius(12px);
+        @include mixins.transition;
+
+        &.active {
+          width: 16px;
+          background: #000;
+          transform: scale(1.2);
         }
       }
     }
@@ -404,7 +584,7 @@
 @keyframes popIn {
   0% {
     opacity: 0;
-    transform: scale(0.9) translateY(20px);
+    transform: scale(0.95) translateY(10px);
   }
   100% {
     opacity: 1;

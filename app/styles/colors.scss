@@ -1,17 +1,70 @@
 :root {
-  --background: #fffdf5;
-  --foreground: #1c1c1a;
-  --border: #1c1c1a;
+  --primary: hsl(48, 100%, 62%);
+  --primary-lite: hsl(48, 100%, 93%);
+
+  --background: hsl(48, 100%, 98%);
+  --foreground: hsl(60, 4%, 11%);
+  --border: hsl(60, 4%, 11%);
+
+  //* Text Colors
+  // light
+  --foreground-light-000: #00000014;
+  --foreground-light-100: #00000026;
+  --foreground-light-200: #0000003c;
+  --foreground-light-300: #00000055;
+  --foreground-light-400: #0000006c;
+  --foreground-light-500: #00000080;
+  --foreground-light-600: #00000098;
+  --foreground-light-700: #000000b9;
+  --foreground-light-800: #000000d3;
+  --foreground-light-900: #000000ed;
+  --foreground-light-950: #000000ff;
+  // dark
+  --foreground-dark-000: #ffffff14;
+  --foreground-dark-100: #ffffff26;
+  --foreground-dark-200: #ffffff3c;
+  --foreground-dark-300: #ffffff55;
+  --foreground-dark-400: #ffffff6c;
+  --foreground-dark-500: #ffffff80;
+  --foreground-dark-600: #ffffff98;
+  --foreground-dark-700: #ffffffb9;
+  --foreground-dark-800: #ffffffd3;
+  --foreground-dark-900: #ffffffed;
+  --foreground-dark-950: #ffffffff;
 }
 
 :root.light {
-  --background: #fffdf5;
-  --foreground: #1c1c1a;
-  --border: #1c1c1a;
+  --background: hsl(48, 100%, 98%);
+  --foreground: hsl(60, 4%, 11%);
+  --border: hsl(60, 4%, 11%);
+
+  --foreground-000: var(--foreground-light-000);
+  --foreground-100: var(--foreground-light-100);
+  --foreground-200: var(--foreground-light-200);
+  --foreground-300: var(--foreground-light-300);
+  --foreground-400: var(--foreground-light-400);
+  --foreground-500: var(--foreground-light-500);
+  --foreground-600: var(--foreground-light-600);
+  --foreground-700: var(--foreground-light-700);
+  --foreground-800: var(--foreground-light-800);
+  --foreground-900: var(--foreground-light-900);
+  --foreground-950: var(--foreground-light-950);
 }
 
 :root.dark {
-  --background: #1c1c1a;
-  --foreground: #fffdf5;
-  --border: #fffdf5;
+  --background: hsl(60, 4%, 11%);
+  --foreground: hsl(48, 100%, 98%);
+  --border: hsl(48, 100%, 98%);
+
+  --foreground-000: var(--foreground-dark-000);
+  --foreground-100: var(--foreground-dark-100);
+  --foreground-200: var(--foreground-dark-200);
+  --foreground-300: var(--foreground-dark-300);
+  --foreground-400: var(--foreground-dark-400);
+  --foreground-500: var(--foreground-dark-500);
+  --foreground-600: var(--foreground-dark-600);
+  --foreground-700: var(--foreground-dark-700);
+  --foreground-800: var(--foreground-dark-800);
+  --foreground-900: var(--foreground-dark-900);
+  --foreground-950: var(--foreground-dark-950);
 }

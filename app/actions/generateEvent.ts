@@ -4,7 +4,7 @@ import { parseEventWithGemini, EventDetails } from '../lib/gemini'
 
 export interface GenerateEventResult {
   success: boolean
-  data?: EventDetails
+  data?: EventDetails[]
   error?: string
 }
 
@@ -22,8 +22,8 @@ export async function generateEvent(
   }
 
   try {
-    const eventDetails = await parseEventWithGemini(text, image)
-    return { success: true, data: eventDetails }
+    const events = await parseEventWithGemini(text, image)
+    return { success: true, data: events }
   } catch (error) {
     console.error('Error generating event:', error)
     return {

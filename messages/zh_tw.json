@@ -30,22 +30,28 @@
             "replace": "更換圖片"
           },
           "submit": {
-            "button": "⚡ 生成行事曆",
+            "button": "生成行事曆",
             "buttonLoading": "AI 分析中..."
           }
         },
         "preview": {
-          "title": "活動分析完成！",
-          "description": "活動分析完成！",
-          "event": {
-            "title": "活動名稱",
+          "multiEventBadge": {
+            "found": "辨識到",
+            "events": "個活動"
+          },
+          "card": {
+            "header": {
+              "label": "行程"
+            },
+            "eventTitle": "活動名稱",
+            "date": "日期",
             "time": "時間",
             "location": "地點",
-            "description": "備註"
-          },
-          "actions": {
-            "googleCalendar": "加入 Google Calendar",
-            "ics": "下載 .ics 檔案"
+            "description": "備註",
+            "actions": {
+              "googleCalendar": "加入 Google Calendar",
+              "ics": "下載 .ics 檔案"
+            }
           }
         }
       }

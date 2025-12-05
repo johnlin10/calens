@@ -24,28 +24,34 @@
             "textMode": "<> Text Input",
             "imageMode": "Upload Image"
           },
-          "textareaPlaceholder": "Paste event details here... e.g. Dinner party at the community center tomorrow at 7pm...",
+          "textareaPlaceholder": "Paste event details here... e.g. Welcome party at the activity center tomorrow at 7pm...",
           "imageUpload": {
             "upload": "Upload Event Poster/Screenshot",
             "replace": "Replace Image"
           },
           "submit": {
-            "button": "⚡ Generate Calendar",
+            "button": "Generate Calendar",
             "buttonLoading": "AI Analyzing..."
           }
         },
         "preview": {
-          "title": "Event Analysis Complete!",
-          "description": "Event Analysis Complete!",
-          "event": {
-            "title": "Event Name",
+          "multiEventBadge": {
+            "found": "Found",
+            "events": "events"
+          },
+          "card": {
+            "header": {
+              "label": "Schedule"
+            },
+            "eventTitle": "Event Title",
+            "date": "Date",
             "time": "Time",
             "location": "Location",
-            "description": "Notes"
-          },
-          "actions": {
-            "googleCalendar": "Add to Google Calendar",
-            "ics": "Download .ics File"
+            "description": "Notes",
+            "actions": {
+              "googleCalendar": "Add to Google Calendar",
+              "ics": "Download .ics File"
+            }
           }
         }
       }

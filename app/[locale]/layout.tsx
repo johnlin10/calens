@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { ClerkProvider } from '@clerk/nextjs'
-import { Geist, Geist_Mono, Noto_Sans_TC } from 'next/font/google'
-import { getLocale, getMessages } from 'next-intl/server'
+import { Geist_Mono, Noto_Sans_TC } from 'next/font/google'
+import { getMessages } from 'next-intl/server'
 import './globals.css'
 import '@/app/styles/colors.scss'
 import Header from '@/app/components/Header/Header'
@@ -41,9 +41,9 @@ export default async function RootLayout({
   const messages = await getMessages({ locale })
 
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
-      <ClerkProvider>
-        <html lang={locale as string}>
+    <ClerkProvider>
+      <NextIntlClientProvider locale={locale} messages={messages}>
+        <html lang={locale as string} className="light">
           <body
             className={`${notoSansTC.variable} ${geistMono.variable} antialiased`}
           >
@@ -51,7 +51,7 @@ export default async function RootLayout({
             {children}
           </body>
         </html>
-      </ClerkProvider>
-    </NextIntlClientProvider>
+      </NextIntlClientProvider>
+    </ClerkProvider>
   )
 }
