@@ -12,8 +12,15 @@
       "badge": "開放原始碼 BETA",
       "title1": "所見，",
       "title2": "即日程。",
-      "description": "告別手動輸入。AI 驅動，一秒將海報圖片與活動文宣轉化為您的行事曆。",
-      "description2": "支援 .ics 下載與 Google Calendar 直連。",
+      "mainDescription": [
+        "告別手動輸入。",
+        "由 AI 驅動",
+        "，",
+        "一秒將海報圖片與活動文宣",
+        "轉化為您的行事曆。"
+      ],
+      "poweredBy": "",
+      "subDescription": "支援 .ics 下載與 Google Calendar 直連。",
       "buttons": {
         "start": "開始使用",
         "learnMore": "了解更多"
@@ -21,16 +28,16 @@
       "eventGenerator": {
         "form": {
           "modeSelector": {
-            "textMode": "<> 文字輸入",
-            "imageMode": "圖片上傳"
+            "textMode": "文字",
+            "imageMode": "圖片"
           },
-          "textareaPlaceholder": "在此貼上活動文案... 例如：明天晚上七點在活動中心舉辦迎新晚會...",
+          "textareaPlaceholder": "在此撰寫或貼上活動文案... 例如：明天晚上七點在活動中心舉辦迎新晚會...",
           "imageUpload": {
             "upload": "上傳活動海報/截圖",
             "replace": "更換圖片"
           },
           "submit": {
-            "button": "生成行事曆",
+            "button": "轉換為日程",
             "buttonLoading": "AI 分析中..."
           }
         },

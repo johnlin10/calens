@@ -13,10 +13,6 @@
     @include mixins.shadow(8px, #3c3c3c);
     overflow: hidden;
     transition: transform 0.2s ease;
-
-    &:hover {
-      @include mixins.shadow(8px, #5865f2);
-    }
   }
 }
 
@@ -33,6 +29,7 @@
     .tab {
       flex: 1;
       @include mixins.flexbox(row, center, center);
+      gap: var(--spacing);
       font-weight: 700;
       font-size: 1rem;
       background: #fff;
@@ -142,17 +139,19 @@
   }
 
   .submit_button {
+    @include mixins.flexbox(row, center, center);
+    gap: var(--spacing);
     margin: 0 1.5rem 1.5rem 1.5rem;
     padding: 1rem;
-    background: #5865f2;
+    background: #6c53ff;
     color: white;
     font-weight: 700;
     font-size: 1.1rem;
     border: 2px solid #000;
-    border-radius: 8px;
-    cursor: pointer;
     transition: all 0.2s;
     box-shadow: 4px 4px 0px #000;
+    @include mixins.radius(8px);
+    cursor: pointer;
 
     &:hover:not(:disabled) {
       transform: translate(-2px, -2px);
@@ -169,6 +168,11 @@
       cursor: not-allowed;
       box-shadow: none;
       transform: none;
+    }
+
+    .loadingIcon {
+      font-size: 1.2rem;
+      animation: spin 1s linear infinite;
     }
   }
 }
@@ -581,6 +585,14 @@
   }
 }
 
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 @keyframes popIn {
   0% {
     opacity: 0;

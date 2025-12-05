@@ -12,8 +12,15 @@
       "badge": "OPEN SOURCE BETA",
       "title1": "See it.",
       "title2": "Schedule it.",
-      "description": "Say goodbye to manual input. AI-powered, transform posters and event flyers into your calendar in seconds.",
-      "description2": "Supports .ics download and direct Google Calendar integration.",
+      "mainDescription": [
+        "Say goodbye to manual input.",
+        "AI-powered",
+        " , ",
+        "instantly transform posters and event flyers ",
+        "into your calendar."
+      ],
+      "poweredBy": "Powered by AI",
+      "subDescription": "Supports .ics download and direct Google Calendar integration.",
       "buttons": {
         "start": "Get Started",
         "learnMore": "Learn More"
@@ -21,16 +28,16 @@
       "eventGenerator": {
         "form": {
           "modeSelector": {
-            "textMode": "<> Text Input",
-            "imageMode": "Upload Image"
+            "textMode": "Text",
+            "imageMode": "Image"
           },
-          "textareaPlaceholder": "Paste event details here... e.g. Welcome party at the activity center tomorrow at 7pm...",
+          "textareaPlaceholder": "Write or paste event details here... e.g. Welcome party at the activity center tomorrow at 7pm...",
           "imageUpload": {
             "upload": "Upload Event Poster/Screenshot",
             "replace": "Replace Image"
           },
           "submit": {
-            "button": "Generate Calendar",
+            "button": "Transform to Calendar",
             "buttonLoading": "AI Analyzing..."
           }
         },

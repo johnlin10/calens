@@ -4,6 +4,13 @@ import { ChangeEvent, useState } from 'react'
 import styles from './eventGenerator.module.scss'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
+import {
+  TextCursorInput,
+  ImageIcon,
+  ImageUp,
+  CalendarRange,
+  RefreshCcw,
+} from 'lucide-react'
 
 interface EventInputProps {
   disabled?: boolean
@@ -39,6 +46,7 @@ export default function EventInput({ disabled }: EventInputProps) {
           }`}
           onClick={() => setEventGeneratorMode('text')}
         >
+          <TextCursorInput />
           {t('modeSelector.textMode')}
         </button>
         <button
@@ -48,6 +56,7 @@ export default function EventInput({ disabled }: EventInputProps) {
           }`}
           onClick={() => setEventGeneratorMode('image')}
         >
+          <ImageIcon />
           {t('modeSelector.imageMode')}
         </button>
       </div>
@@ -64,7 +73,9 @@ export default function EventInput({ disabled }: EventInputProps) {
         {eventGeneratorMode === 'image' && (
           <div className={styles.image_upload}>
             <label htmlFor="image-upload" className={styles.uploadLabel}>
-              <div className={styles.uploadIcon}>📁</div>
+              <div className={styles.uploadIcon}>
+                <ImageUp />
+              </div>
               <span>
                 {imagePreview
                   ? t('imageUpload.replace')
@@ -99,6 +110,11 @@ export default function EventInput({ disabled }: EventInputProps) {
         className={styles.submit_button}
         disabled={disabled}
       >
+        {disabled ? (
+          <RefreshCcw className={styles.loadingIcon} />
+        ) : (
+          <CalendarRange />
+        )}
         {disabled ? t('submit.buttonLoading') : t('submit.button')}
       </button>
     </div>

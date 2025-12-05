@@ -13,19 +13,26 @@
   .heroSection {
     @include mixins.flexbox(column, center, center);
     min-height: calc(100vh - 72px);
+    width: 100%;
     padding: var(--spacing-8x) var(--spacing-4x);
+    margin: 0 auto;
 
-    @include mixins.respond-to('desktop') {
+    @include mixins.respond-to('desktop', 600px, 1080px) {
       flex-direction: row;
       gap: var(--spacing-4x);
-      padding: var(--spacing-4x);
+      padding: var(--spacing-4x) var(--spacing-6x);
+      max-width: 1200px;
     }
 
     > .heroSectionContent {
-      @include mixins.flexbox(column, flex-start, flex-start);
+      @include mixins.flexbox(column, center, flex-start);
       flex: 1;
       width: 100%;
       max-width: 720px;
+
+      @include mixins.respond-to('desktop', 600px, 1080px) {
+        width: 60%;
+      }
 
       .badge {
         background: #ffd83d;
@@ -54,14 +61,25 @@
       }
 
       .descriptionGroup {
-        margin-bottom: 2.5rem;
+        width: 100%;
+        margin-bottom: var(--spacing-4x);
 
         p {
+          max-width: 100%;
           font-size: 1.25rem;
           line-height: 1.6;
           color: #4b5563;
           margin-bottom: 0.5rem;
           font-weight: 500;
+          word-break: break-word;
+
+          span {
+            &.poweredBy {
+              padding: 0 6px;
+              background: #6c53ff;
+              color: #fff;
+            }
+          }
         }
 
         .subDescription {
@@ -111,6 +129,10 @@
       flex: 1;
       width: 100%;
       max-width: 720px;
+
+      @include mixins.respond-to('desktop', 600px, 1080px) {
+        width: 40%;
+      }
     }
   }
 }

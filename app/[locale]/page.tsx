@@ -21,9 +21,20 @@ export default async function Home({
             <h1>{t('heroSection.title2')}</h1>
           </div>
           <div className={styles.descriptionGroup}>
-            <p>{t('heroSection.description')}</p>
+            <p>
+              <span>{t('heroSection.mainDescription.0')}</span>
+              <br />
+              <span className={styles.poweredBy}>
+                {t('heroSection.mainDescription.1')}
+              </span>
+              <span>{t('heroSection.mainDescription.2')}</span>
+              <span>{t('heroSection.mainDescription.3')}</span>
+              <span className="nowrap">
+                {t('heroSection.mainDescription.4')}
+              </span>
+            </p>
             <p className={styles.subDescription}>
-              {t('heroSection.description2')}
+              {t('heroSection.subDescription')}
             </p>
           </div>
           {/* <div className={styles.buttonGroup}>
