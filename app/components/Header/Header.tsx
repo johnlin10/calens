@@ -21,7 +21,7 @@ export default function Header() {
           <Link href="/">
             {/* <Image src="/logo.svg" alt="Calens" width={48} height={48} /> */}
             <span>Calens</span>
-            <span className={styles.version}>v0.4.1</span>
+            <span className={styles.version}>v0.4.2</span>
           </Link>
         </div>
         {/* <div className={styles.header_navigation}>
